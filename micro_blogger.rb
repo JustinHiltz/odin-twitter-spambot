@@ -41,6 +41,17 @@ class	MicroBlogger
       dm(follower, message)
     end
   end
+
+  # Don't know why this isn't working yet.
+  def everyones_last_tweet
+    friends = @client.friends
+    friends.each do |friend|
+      puts friend.screen_name
+      # print each friend's screen_name
+      # print each friend's last message
+      puts ""  # Just print a blank line to separate people
+    end
+  end
   	
 
   def run
@@ -56,6 +67,7 @@ class	MicroBlogger
   		  when 't' then tweet(parts[1..-1].join(" "))
   		  when 'dm' then dm(parts[1], parts[2..-1].join(" "))
   		  when 'spam' then spam_my_followers(parts[1..-1].join(" "))
+  		  when 'elt' then everyones_last_tweet
   		  else
   		    puts "I'm sorry I don't know how to #{command}." 
   		end
